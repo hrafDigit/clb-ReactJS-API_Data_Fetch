@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 
 function App() {
+
     const [resource, setResource] = useState("users");
     const [data, setData] = useState([]);
 
@@ -42,6 +43,7 @@ function App() {
             </div>
         </div>
     );
+
 }
 
 export default App;
