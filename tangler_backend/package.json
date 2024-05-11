@@ -1,0 +1,17 @@
+{
+  "name": "tangler_backend",
+  "version": "1.0.0",
+  "description": "Tangler app, a simple contacts book-manger project (crafted by hrafDigit to learn NodeJS and ReactJS basics – will iterate from now and then to add features)",
+  "main": "servers.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.4"
+  }
+}

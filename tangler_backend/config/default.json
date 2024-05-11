@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb://localhost:27017/tangler_backend",
+    "jwtSecret": "blog_secret_key"
+}
