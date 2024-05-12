@@ -1,40 +1,48 @@
-// backend/controllers/posts.js
-const Post = require('../models/post');
+// backend/controllers/contacts.js
+const Contact = require('../models/contact');
 
 /* --- CRUD behavior --- */
-// Create a post
+// Create a contact
 exports.create = (req, res) => {
-    const newPost = new Post({
-        title: req.body.title,
-        post: req.body.post
+    const newContact = new Contact({
+        phoneNumberMain: req.body.phoneNumberMain,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        address: req.body.address,
+        email: req.body.email,
+        phoneNumberTwo: req.body.phoneNumberTwo,
+        dob: req.body.dob,
+        profilePhoto: req.body.profilePhoto,
+        website: req.body.website,
+        socialProfiles: req.body.socialProfiles,
     })
-    newPost
+    newContact
         .save()
         .then(data => res.json(data))
         .catch(() => res.status(400).json({
-            msg: 'Something went wrong while creating a post'
+            msg: 'Something went wrong while creating a contact'
         }))
 }
-// Read – Get all the posts
+// Read – Get all the contacts
 exports.get = (req, res) => {
-    Post
+    Contact
         .find()
-        .then(posts => res.json(posts))
-        .catch(() => res.status(400).json({ msg: 'Something went wrong while retrieving all posts' }))
+        .then(contacts => res.json(contacts))
+        .catch(() => res.status(400).json({ msg: 'Something went wrong while retrieving all contacts' }))
 }
-// Update a post
+// Update a contact
 exports.update = (req, res) => {
-    Post
+    Contact
         .findByIdAndUpdate(req.body.id, req.body)
-        .then(post => res.json(post))
-        .catch(() => res.status(400).json({ msg: 'Something went wrong while updating a post' }))
+        .then(contact => res.json(contact))
+        .catch(() => res.status(400).json({ msg: 'Something went wrong while updating a contact' }))
 }
-// Delete a post
+// Delete a contact
 exports.delete = (req, res) => {
-    Post
+    Contact
         .findByIdAndDelete(req.body.id)
-        .then(post => res.json(post))
-        .catch(() => res.status(400).json({ msg: 'Something went wrong while deleting a post' }))
+        .then(contact => res.json(contact))
+        .catch(() => res.status(400).json({ msg: 'Something went wrong while deleting a contact' }))
 }
 
 

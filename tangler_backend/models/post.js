@@ -1,7 +1,10 @@
+/* --- backend/models/post.js --- */
+// - Default -
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
 // Create Schema
-const postSchema = new Schema({
+const PostSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -16,7 +19,7 @@ const postSchema = new Schema({
     }
 });
 
-const Post = model('post', postSchema);
-module.exports = Post;
+// const Post = model('post', PostSchema);
+// module.exports = Post;
 // OR shorter
-// module.exports = Post = mongoose.model('post', postSchema);
+module.exports = Post = mongoose.model('post', PostSchema);

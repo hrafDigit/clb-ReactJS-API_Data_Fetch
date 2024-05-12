@@ -1,8 +1,10 @@
-// backend/models/user.js
+/* --- backend/models/user.js --- */
+// - Default -
 const mongoose = require('mongoose');
-const { Schema, model } = mongoose;
+const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+// Create Schema
+const UserSchema = new Schema({
     email: { 
         type: String,
         required: true,
@@ -14,19 +16,19 @@ const userSchema = new Schema({
     },
     firstName: {
         type: String,
-        required: true
+        // required: true
     },
     lastName: {
         type: String,
-        required: true
+        // required: true
     },
     phoneNumber: {
         type: String,
-        required: true
+        // required: true
     },
     address: {
         type: String,
-        required: true
+        // required: true
     },
     createdAt: {
         type: Date,
@@ -34,7 +36,7 @@ const userSchema = new Schema({
     },
 });
 
-const User = model('user', userSchema);
-module.exports = User;
+// const User = model('user', UserSchema);
+// module.exports = User;
 // OR shorter
-// module.exports = User = mongoose.model('user', PostSchema);
+module.exports = User = mongoose.model('user', UserSchema);

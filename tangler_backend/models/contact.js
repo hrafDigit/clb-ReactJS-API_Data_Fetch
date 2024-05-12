@@ -1,18 +1,26 @@
-// backend/models/user.js
+/* --- backend/models/contact.js --- */
+// - Default -
 const mongoose = require('mongoose');
-const { Schema, model } = mongoose;
+const Schema = mongoose.Schema;
 
-const contactSchema = new Schema({
-    profilePhoto: {
-        type: URL,
+// Create Schema
+const ContactSchema = new Schema({
+    phoneNumberMain: {
+        type: String,
+        required: true
     },
     firstName: {
         type: String,
+        required: true
     },
     lastName: {
         type: String,
+        required: true
     },
-    phoneNumberOne: {
+    address: {
+        type: String,
+    },
+    email: {
         type: String,
     },
     phoneNumberTwo: {
@@ -21,17 +29,14 @@ const contactSchema = new Schema({
     dob: {
         type: Date,
     },
-    address: {
-        type: String,
-    },
-    email: {
+    profilePhoto: {
         type: String,
     },
     website: {
-        type: URL,
+        type: String,
     },
     socialProfiles: {
-        type: URL,
+        type: String,
     },
     createdAt: {
         type: Date,
@@ -39,7 +44,7 @@ const contactSchema = new Schema({
     },
 });
 
-const Contact = model('contact', contactSchema);
-module.exports = Contact;
+// const Contact = model('contact', ContactSchema);
+// module.exports = Contact;
 // OR shorter
-// module.exports = contact = mongoose.model('contact', PostSchema);
+module.exports = Contact = mongoose.model('contact', ContactSchema);
