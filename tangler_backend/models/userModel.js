@@ -14,29 +14,32 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
     firstName: {
         type: String,
-        // required: true
+        required: false
     },
     lastName: {
         type: String,
-        // required: true
+        required: false
     },
     phoneNumber: {
         type: String,
-        // required: true
+        required: false
     },
     address: {
         type: String,
-        // required: true
+        required: false
     },
+    // contacts: [ContactSchema],
     createdAt: {
         type: Date,
         default: Date.now
     },
 });
 
-// const User = model('user', UserSchema);
-// module.exports = User;
-// OR shorter
 module.exports = User = mongoose.model('user', UserSchema);

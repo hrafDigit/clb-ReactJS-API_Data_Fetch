@@ -1,16 +1,21 @@
-/* --- backend/routes/api/posts.js --- */
+/* --- backend/routes/postsRoutes.js --- */
 // - Default -
 const express = require('express');
 const router = express.Router();
-const postsController = require('../../controllers/posts');
+const postsController = require('../controllers/postsController');
 
-router.post('/add', postsController.create);
-router.get('/get', postsController.get);
-router.put('/update-post', postsController.update);
-router.delete('/delete-post', postsController.delete);
+// Create a new post
+router.post('/add-post', postsController.createPost);
+// Get all posts
+router.get('/', postsController.getPosts);
+// Get a single post (by its ID)
+router.get('/:_id', postsController.getPostById);
+// Update a single post (by its ID)
+router.put('/:_id', postsController.updatePost);
+// Delete a single post (by its ID)
+router.delete('/:_id', postsController.deletePost);
 
 module.exports = router;
-
 
 
 

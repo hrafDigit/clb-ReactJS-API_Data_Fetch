@@ -1,15 +1,52 @@
 // --- server.js ---
-// - Default -
+// - Default + JWT/Bcrypt -
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const config = require('config');
 
 const app = express();
 
-//Body Parser
+const PORT = process.env.PORT || 5000;
+
+// Body Parser
+/* 
+:: Body-Parser :: pour pouvoir lire les entrées d'un formulaire, 
+le stocke comme un objet Javascript accessible via req.body 
+*/
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 const db = config.get('mongoURI');
+
+// Middleware
+// app.use(cors());
+// OU
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    // Other options if needed
+};
+app.use(cors(corsOptions));
+app.use(express.json());
+
+// Session
+// app.use(session({
+//     cookie: { maxAge: 60000 },
+//     secret: 'woot',
+//     resave: false,
+//     saveUninitialized: false
+// }));
+
+const authRoutes = require('./routes/authenticateRoutes');
+const usersRoutes = require('./routes/usersRoutes');
+// Use Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/users', usersRoutes);
+// app.use('/', require('./routes/authenticateRoutes.js'));
+// app.use('/users', require('./routes/usersRoutes.js'));
+app.use('/contacts', require('./routes/contactsRoutes.js'));
+app.use('/api/posts', require('./routes/postsRoutes.js'));
+
 
 // Connect to MongoDB
 mongoose
@@ -17,19 +54,37 @@ mongoose
     .then(() => console.log('Successfully connected to MongoDB'))
     .catch(err => console.log(err));
 
-// Use Routes
-// app.use('/api/register', require('./routes/api/register'));
-// app.use('/api/login', require('./routes/api/login'));
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/contacts', require('./routes/api/contacts'));
-app.use('/api/posts', require('./routes/api/posts'));
-
 const port = 5000;
 app.listen(port, () => console.log(`Server started at port ${port}`));
 
 
 
 
+// // - Default -
+// const express = require('express');
+// const mongoose = require('mongoose');
+// const bodyParser = require('body-parser');
+// const config = require('config');
+
+// const app = express();
+
+// //Body Parser
+// app.use(bodyParser.json());
+// const db = config.get('mongoURI');
+
+// // Connect to MongoDB
+// mongoose
+//     .connect(db)
+//     .then(() => console.log('Successfully connected to MongoDB'))
+//     .catch(err => console.log(err));
+
+// // Use Routes
+// app.use('/api/users', require('./routes/api/users'));
+// app.use('/api/contacts', require('./routes/api/contacts'));
+// app.use('/api/posts', require('./routes/api/posts'));
+
+// const port = 5000;
+// app.listen(port, () => console.log(`Server started at port ${port}`));
 
 
 
@@ -38,6 +93,10 @@ app.listen(port, () => console.log(`Server started at port ${port}`));
 
 
 
+
+
+
+// ---------------------------------------------------------------------------------
 // - Playground -
 
 // // Set-up express
